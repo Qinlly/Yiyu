@@ -1,0 +1,9 @@
+knife4j:
+  enable: true
+
+swagger:
+  title: 你的API文档标题  # 标题
+  description: API描述信息  # 描述
+  base-package: com.ruiyuyun.wx.controller  # Swagger扫描的包路径，这里替换为你的Controller所在的包路径
+  enabled: true  # 是否启用Swagger，默认为true
+  version: 1.0.0  # 版本信息

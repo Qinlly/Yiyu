@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruiyuyun.wx.mapper.DiaryMapper">
+
+    <select id="searchDiaries" resultType="com.ruiyuyun.wx.model.Diary">
+        SELECT diaries.content, diaries.created_time, diaries.update_time, tags.tag_name,diaries.id
+        FROM diaries
+        LEFT  JOIN
+             diary_tags ON diaries.id = diary_tags.diary_id
+        LEFT  JOIN
+             tags ON tags.id = diary_tags.tag_id
+
+        <where>
+
+            AND diaries.user_id=#{userId}
+            ANd diaries.status=0
+          <if test="tagName!=null and tagName!='' ">
+            AND tags.tag_name LIKE concat('%', #{tagName}, '%')
+          </if>
+            <if test="content!=null and content!='' ">
+            AND diaries.content LIKE concat('%', #{content}, '%')
+            </if>
+            <if test="start!=null and end!=null">
+            AND diaries.update_time BETWEEN #{start} AND #{end}
+        order by diaries.update_time DESC
+          </if>
+         </where>
+
+
+    </select>
+
+</mapper>
