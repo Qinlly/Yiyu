@@ -20,11 +20,12 @@ public class Diary {
     private Integer id;
     private Integer userId;
     private String content;
+
     private String tagName;
+    private Integer tagId;
+
     private Date createdTime;
     private Date updateTime;
-
-    private Integer status;
 
 
 

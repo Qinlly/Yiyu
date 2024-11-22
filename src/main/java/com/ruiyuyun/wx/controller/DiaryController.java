@@ -23,12 +23,13 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 @RequestMapping("/diary")
+@CrossOrigin
 public class DiaryController {
 
     final DiaryService diaryService;
 
     @GetMapping("/select")  //查询功能,可实现分页查询,模糊查询等等
-    public Result selectDiary(SelectRequest r,
+    public Result selectDiary( SelectRequest r,
             /*@RequestParam(defaultValue="1")Integer page,
                               @RequestParam(defaultValue="10")Integer pageSize,
                               @RequestParam(required = false)String content,*//*Integer userId,*//*
@@ -48,7 +49,7 @@ public class DiaryController {
     }
 
     @PostMapping("/insert") //根据用户ID添加日记
-    public Result insertDiary(ServletRequest servletRequest, InsertRequest i
+    public Result insertDiary(ServletRequest servletRequest, @RequestBody InsertRequest i
             /*@RequestParam String content, @RequestParam List<String> tagNames*/) {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -59,8 +60,8 @@ public class DiaryController {
         return Result.success(diary);
     }
 
-    @PutMapping("/updateDiary") //根据日记ID更新日记
-    public Result updateDiary(UpdateDiaryRequest u,
+    @PostMapping("/updateDiary") //根据日记ID更新日记
+    public Result updateDiary(@RequestBody UpdateDiaryRequest u,
             /*@RequestParam Integer diaryId, @RequestParam String content, @RequestParam List<String> newTagNames,*/
                              ServletRequest servletRequest) {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -72,7 +73,7 @@ public class DiaryController {
     }
 
     @PutMapping("/updateTag")  //根据标签名修改所有日记对应的标签名
-    public Result updateTag(UpdateTagRequest u,
+    public Result updateTag( UpdateTagRequest u,
             /*@RequestParam Integer tagId, @RequestParam String newTagName,*/
                             ServletRequest servletRequest) {
         HttpServletRequest request = (HttpServletRequest) servletRequest;

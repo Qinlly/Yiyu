@@ -67,13 +67,15 @@ public class DiaryServiceImpl implements DiaryService {
         Diary diary = diaryMapper.selectById(diaryId);
 
         if(userId.equals(diary.getUserId())) {
-            diaryMapper.deleteById(diaryId);
+
 
             DiaryTag diaryTag = new DiaryTag();
 
             diaryTag.setDiaryId(diaryId);
 
             diaryTagMapper.deleteDiaryTagByDiaryId(diaryTag);
+
+            diaryMapper.deleteById(diaryId);
         }
     }
 

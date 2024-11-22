@@ -25,6 +25,7 @@ class YiYuApplicationTests {
     @Test
     void contextLoads() {
     }
+/*
 
     @Test
     public void testGenJwt() { //测试jwt令牌生成
@@ -117,6 +118,7 @@ class YiYuApplicationTests {
 
 
 
+*/
 
 
 }

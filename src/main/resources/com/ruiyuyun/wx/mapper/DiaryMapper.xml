@@ -5,7 +5,7 @@
 <mapper namespace="com.ruiyuyun.wx.mapper.DiaryMapper">
 
     <select id="searchDiaries" resultType="com.ruiyuyun.wx.model.Diary">
-        SELECT diaries.content, diaries.created_time, diaries.update_time, tags.tag_name,diaries.id
+        SELECT diaries.content, diaries.created_time, diaries.update_time, tags.tag_name,diaries.id,tags.id as tag_id
         FROM diaries
         LEFT  JOIN
              diary_tags ON diaries.id = diary_tags.diary_id
